@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Goods - Toko Online</title>
+    <style>
+        /* Desain & Tata Letak Modern */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header & Navigasi */
+        header {
+            background: #ffffff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .cart-icon {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Banner Utama (Hero) */
+        .hero {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            margin: 20px 5%;
+            padding: 50px 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            color: #1b5e20;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .btn-hero {
+            background-color: #2e7d32;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Bagian Produk */
+        .container {
+            padding: 20px 5%;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #222;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .btn-add {
+            width: 100%;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-add:hover {
+            background-color: #1b5e20;
+        }
+
+        /* Modal Keranjang Belanja */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .cart-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .cart-items {
+            margin: 15px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ffffff;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Modern Goods</div>
+        <nav>
+            <a href="#">Beranda</a>
+            <a href="#produk">Produk</a>
+        </nav>
+        <div class="cart-icon" onclick="bukaKeranjang()">
+            🛒 Keranjang (<span id="cart-count">0</span>)
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Koleksi Spesial Terbaru</h1>
+        <p>Dapatkan produk pilihan terbaik dengan harga terjangkau hanya minggu ini.</p>
+        <a href="#produk" class="btn-hero">Belanja Sekarang</a>
+    </section>
+
+    <main class="container" id="produk">
+        <h2 class="section-title">Produk Unggulan</h2>
+        <div class="product-grid">
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Jam Tangan">
+                <div class="product-title">Jam Tangan Minimalis</div>
+                <div class="product-price">Rp 499.000</div>
+                <button class="btn-add" onclick="tambahKeKeranjang('Jam Tangan Minimalis', 499000)">+ Keranjang</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Headphone">
+                <div class="product-title">Headphone Wireless</div>
+                <div class="product-price">Rp 1.250.000</div>
+                <button class="btn-add" onclick="tambahKeKeranjang('Headphone Wireless', 1250000)">+ Keranjang</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=500" alt="Jaket Denim">
+                <div class="product-title">Jaket Denim Casual</div>
+                <div class="product-price">Rp 350.000</div>
+                <button class="btn-add" onclick="tambahKeKeranjang('Jaket Denim Casual', 350000)">+ Keranjang</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500" alt="Kopi">
+                <div class="product-title">Kopi Organik 500g</div>
+                <div class="product-price">Rp 120.000</div>
+                <button class="btn-add" onclick="tambahKeKeranjang('Kopi Organik 500g', 120000)">+ Keranjang</button>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <h3>Keranjang Belanja</h3>
+            <div class="cart-items" id="cart-items">
+                <p>Keranjang masih kosong.</p>
+            </div>
+            <div><strong>Total: Rp <span id="cart-total">0</span></strong></div>
+            <button class="btn-checkout" onclick="checkoutWA()">Pesan via WhatsApp</button>
+            <button onclick="tutupKeranjang()" style="width:100%; margin-top:10px; padding:8px; border:none; background:#ccc; border-radius:6px; cursor:pointer;">Tutup</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Modern Goods. Dibuat dengan GitHub Pages.</p>
+    </footer>
+
+    <script>
+        let keranjang = [];
+        let totalHarga = 0;
+
+        function tambahKeKeranjang(nama, harga) {
+            keranjang.push({ nama, harga });
+            totalHarga += harga;
+            perbaruiTampilanKeranjang();
+            alert(nama + " berhasil ditambahkan ke keranjang!");
+        }
+
+        function perbaruiTampilanKeranjang() {
+            document.getElementById('cart-count').innerText = keranjang.length;
+            document.getElementById('cart-total').innerText = totalHarga.toLocaleString('id-ID');
+
+            let cartItemsDiv = document.getElementById('cart-items');
+            if (keranjang.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Keranjang masih kosong.</p>';
+            } else {
+                cartItemsDiv.innerHTML = '';
+                keranjang.forEach((item) => {
+                    cartItemsDiv.innerHTML += `
+                        <div class="cart-item">
+                            <span>${item.nama}</span>
+                            <span>Rp ${item.harga.toLocaleString('id-ID')}</span>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function bukaKeranjang() {
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function tutupKeranjang() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function checkoutWA() {
+            if (keranjang.length === 0) {
+                alert("Keranjang kamu masih kosong!");
+                return;
+            }
+
+            // GANTI NOMOR WHATSAPP DI BAWAH INI (gunakan format 628...)
+            let nomorWA = "6281234567890"; 
+            
+            let pesan = "Halo, saya ingin memesan produk berikut:\n\n";
+            keranjang.forEach((item, index) => {
+                pesan += `${index + 1}. ${item.nama} - Rp ${item.harga.toLocaleString('id-ID')}\n`;
+            });
+            pesan += `\n*Total Pembayaran: Rp ${totalHarga.toLocaleString('id-ID')}*`;
+
+            let url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
