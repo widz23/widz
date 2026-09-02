@@ -1,235 +1,148 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIDZ SHOP</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAMERS | Creative Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #FFDE59;
+      --blue: #2563EB;
+      --sky-blue: #60A5FA;
+      --red: #FF4D4D;
+      --dark: #1E1E1E;
+      --bg-cream: #FDFBF7;
+    }
 
-        body {
-            background-color: #fdf8f9;
-            color: #333;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--bg-cream); color: var(--dark); overflow-x: hidden; }
 
-        /* Top Notification Bar */
-        .top-bar {
-            background-color: #b05270;
-            color: white;
-            text-align: center;
-            padding: 8px 15px;
-            font-size: 13px;
-        }
+    /* Header */
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; }
+    .badge { border: 2px solid var(--dark); padding: 8px 18px; border-radius: 30px; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
 
-        /* Navigation Header */
-        header {
-            background-color: #f2cdd7;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Hero Section */
+    .hero { position: relative; padding: 40px 8%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: center; }
+    .hero-text h2 { font-family: 'Caveat', cursive; color: var(--red); font-size: 3rem; transform: rotate(-3deg); }
+    .hero-text h1 { font-family: 'Montserrat', sans-serif; font-size: 5rem; line-height: 0.9; text-transform: uppercase; font-weight: 900; margin: 10px 0; }
+    .hero-tag { background-color: var(--yellow); border: 2px solid var(--dark); padding: 10px 15px; font-weight: 700; display: inline-block; transform: rotate(-1deg); box-shadow: 3px 3px 0px var(--dark); margin-top: 10px; }
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #4a2330;
-            letter-spacing: 1px;
-        }
+    .hero-image-container { position: relative; display: flex; justify-content: center; }
+    .circle-bg { width: 320px; height: 320px; background-color: var(--yellow); border-radius: 50%; position: absolute; z-index: 1; top: 10px; border: 3px solid var(--dark); }
+    .profile-img { width: 300px; height: 380px; object-fit: cover; border-radius: 200px 200px 20px 20px; position: relative; z-index: 2; border: 3px solid var(--dark); }
+    .badge-superpower { position: absolute; bottom: 20px; right: 10px; z-index: 3; background: var(--blue); color: white; padding: 12px 20px; border-radius: 12px; font-weight: 700; transform: rotate(5deg); border: 2px solid white; box-shadow: 4px 4px 0px var(--dark); }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
+    /* What I Do */
+    .services { padding: 60px 8%; text-align: center; }
+    .services h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; text-transform: uppercase; margin-bottom: 40px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .card-service { background: white; border: 2px solid var(--dark); padding: 25px; border-radius: 16px; box-shadow: 4px 4px 0px var(--dark); }
+    .icon-box { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold; border: 2px solid var(--dark); }
 
-        nav a {
-            text-decoration: none;
-            color: #4a2330;
-            font-size: 14px;
-            font-weight: 600;
-        }
+    /* Selected Work */
+    .portfolio { padding: 60px 8%; background-color: var(--sky-blue); border-top: 3px solid var(--dark); border-bottom: 3px solid var(--dark); }
+    .portfolio h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; text-transform: uppercase; color: white; margin-bottom: 30px; text-shadow: 2px 2px 0px var(--dark); }
+    .grid-portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .work-card { background: white; border: 2px solid var(--dark); border-radius: 16px; padding: 15px; box-shadow: 5px 5px 0px var(--dark); }
+    .work-img { width: 100%; height: 160px; background-color: #ddd; border-radius: 10px; border: 2px solid var(--dark); margin-bottom: 12px; object-fit: cover; }
+    .work-card h4 { font-weight: 800; text-transform: uppercase; }
 
-        .header-icons {
-            display: flex;
-            gap: 15px;
-            font-size: 18px;
-        }
+    /* CTA Section */
+    .cta { padding: 60px 8%; background-color: var(--yellow); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; border-bottom: 3px solid var(--dark); }
+    .cta h2 { font-family: 'Montserrat', sans-serif; font-size: 3rem; text-transform: uppercase; line-height: 1; }
+    .contact-box { background: var(--red); color: white; padding: 30px; border-radius: 20px; border: 3px solid var(--dark); box-shadow: 5px 5px 0px var(--dark); }
 
-        /* Main Section / Hero Grid */
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 0.8fr;
-            gap: 15px;
-            padding: 20px 5%;
-        }
-
-        .hero-card {
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            min-height: 250px;
-        }
-
-        .hero-large {
-            background-color: #a35d73;
-            color: white;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            grid-row: span 2;
-        }
-
-        .hero-large h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .hero-large p {
-            font-size: 14px;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .btn-pink {
-            display: inline-block;
-            background-color: #7d334c;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            width: fit-content;
-        }
-
-        .hero-middle {
-            grid-row: span 2;
-            background-color: #eed3db;
-        }
-
-        .hero-middle img, .hero-small img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-small {
-            background-color: #f7e1e7;
-        }
-
-        /* Gallery Section */
-        .gallery-section {
-            padding: 40px 5%;
-        }
-
-        .gallery-title {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 25px;
-            color: #4a2330;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .product-card {
-            background-color: #ebd0d7;
-            border-radius: 8px;
-            overflow: hidden;
-            height: 200px;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Responsif untuk layar HP */
-        @media (max-width: 768px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            nav ul {
-                display: none;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .hero, .cta { grid-template-columns: 1fr; text-align: center; }
+      .hero-text h1 { font-size: 3.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        Spesial Promo  - Diskon 20%
+  <header>
+    <strong>★ GRAPHIC & WEB DESIGNER</strong>
+    <div class="badge">CREATIVE PORTFOLIO</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Hello!</h2>
+      <h1>I'M<br>DAMERS</h1>
+      <div class="hero-tag">I design digital experiences that connect & convert.</div>
     </div>
+    <div class="hero-image-container">
+      <div class="circle-bg"></div>
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" alt="Damers" class="profile-img">
+      <div class="badge-superpower">DESIGN IS MY SUPERPOWER ⚡</div>
+    </div>
+  </section>
 
-    <header>
-        <div class="logo">WIDZ SHOP</div>
-        <nav>
-            <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">PRODUCTS</a></li>
-                <li><a href="#">MENGGUNAN</a></li>
-                <li><a href="#">IMPROSSESI</a></li>
-                <li><a href="#">CARIVIR</a></li>
-            </ul>
-        </nav>
-        <div class="header-icons">
-            <span>🔍</span>
-            <span>🛍️</span>
-        </div>
-    </header>
+  <section class="services">
+    <h2>WHAT I DO</h2>
+    <div class="grid-4">
+      <div class="card-service">
+        <div class="icon-box" style="background: var(--yellow);">🖋️</div>
+        <h3>BRAND IDENTITY</h3>
+        <p>Meaningful identities that stand out.</p>
+      </div>
+      <div class="card-service">
+        <div class="icon-box" style="background: var(--sky-blue);">💻</div>
+        <h3>WEB DESIGN</h3>
+        <p>Clean, responsive websites that deliver.</p>
+      </div>
+      <div class="card-service">
+        <div class="icon-box" style="background: var(--red); color:white;">📱</div>
+        <h3>UI/UX DESIGN</h3>
+        <p>User-centered design that makes an impact.</p>
+      </div>
+      <div class="card-service">
+        <div class="icon-box" style="background: var(--yellow);">📢</div>
+        <h3>SOCIAL DESIGN</h3>
+        <p>Scroll-stopping content for digital platforms.</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="hero-grid">
-        <div class="hero-card hero-large">
-            <h1>WIDZ<br>SHOP</h1>
-            <p>ORDER  SEKARANG</p>
-            <a href="#" class="btn-pink">Book now</a>
-        </div>
+  <section class="portfolio">
+    <h2>SELECTED WORK</h2>
+    <div class="grid-portfolio">
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=400" class="work-img" alt="Work 1">
+        <h4>NOVA STUDIO</h4>
+        <small>Brand Identity</small>
+      </div>
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400" class="work-img" alt="Work 2">
+        <h4>ELEVATE AGENCY</h4>
+        <small>Web Design</small>
+      </div>
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400" class="work-img" alt="Work 3">
+        <h4>FOCUS APP</h4>
+        <small>UI/UX Design</small>
+      </div>
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=400" class="work-img" alt="Work 4">
+        <h4>SUMMER FEST</h4>
+        <small>Social Campaign</small>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-card hero-middle">
-            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600" alt="Model Fashion Pink">
-        </div>
-
-        <div class="hero-card hero-small">
-            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400" alt="Fashion 1">
-        </div>
-
-        <div class="hero-card hero-small">
-            <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=400" alt="Fashion 2">
-        </div>
-    </section>
-
-    <section class="gallery-section">
-        <h2 class="gallery-title">Fashion gallery</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300" alt="Gallery 1">
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=300" alt="Gallery 2">
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=300" alt="Gallery 3">
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=300" alt="Gallery 4">
-            </div>
-        </div>
-    </section>
+  <section class="cta">
+    <div>
+      <h2>LET'S CREATE SOMETHING GREAT!</h2>
+      <p style="margin-top: 15px; font-weight: 600;">Have a project in mind? Let's bring your ideas to life.</p>
+    </div>
+    <div class="contact-box">
+      <h3 style="margin-bottom: 15px;">CONTACT ME</h3>
+      <p>📧 hello@damersdesign.co</p>
+      <p>🌐 www.damersdesign.co</p>
+      <p>📸 @damersdesign.co</p>
+    </div>
+  </section>
 
 </body>
 </html>
