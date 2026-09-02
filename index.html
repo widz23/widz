@@ -3,61 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DAMERS | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600;700&family=Caveat:wght@700&family=Architects+Daughter&display=swap" rel="stylesheet">
+  <title>DAMERS | Creative Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;500;600;700;800&family=Caveat:wght@700&family=Architects+Daughter&display=swap" rel="stylesheet">
   <style>
     :root {
-      --yellow: #FFDE59;
-      --blue: #2563EB;
-      --sky-blue: #0066FF;
-      --red: #FF5A5F;
-      --dark: #1A1A1A;
-      --bg-cream: #FDF9F0;
+      --yellow: #FFD215;
+      --blue: #1A52EE;
+      --red: #FF4B4B;
+      --dark: #000000;
+      --bg-cream: #F9F6EE;
+      --card-bg: #EFECE6;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Poppins', sans-serif; background-color: var(--bg-cream); color: var(--dark); overflow-x: hidden; }
 
-    /* Header */
-    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; }
-    .header-left { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 0.85rem; }
-    .star-icon { color: var(--red); font-size: 1.5rem; }
-    .badge-portfolio { border: 2px solid var(--dark); padding: 8px 22px; border-radius: 30px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.5px; }
+    /* --- TOP HEADER --- */
+    header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5% 10px; }
+    .header-left { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.5px; }
+    .header-left .star { color: var(--red); font-size: 1.2rem; }
+    .badge-portfolio { border: 2px solid var(--dark); padding: 8px 24px; border-radius: 40px; font-weight: 800; font-size: 0.75rem; background: white; }
 
-    /* Hero Section */
-    .hero { position: relative; padding: 20px 8% 60px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
+    /* --- HERO SECTION --- */
+    .hero { position: relative; padding: 10px 5% 40px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; align-items: center; }
     
-    .hero-text { position: relative; z-index: 2; }
-    .hero-text h2 { font-family: 'Caveat', cursive; color: var(--red); font-size: 4rem; transform: rotate(-3deg); line-height: 1; margin-bottom: 5px; }
-    .hero-text h1 { font-family: 'Montserrat', sans-serif; font-size: 6.5rem; line-height: 0.85; text-transform: uppercase; font-weight: 900; letter-spacing: -2px; }
-    .hero-text .asterisk { color: var(--sky-blue); font-size: 5rem; display: inline-block; vertical-align: middle; margin-left: 10px; }
+    .hero-left { position: relative; z-index: 10; }
+    .hello-text { font-family: 'Caveat', cursive; color: var(--red); font-size: 4rem; line-height: 1; transform: rotate(-3deg); margin-bottom: -10px; }
+    .hero-title { font-family: 'Montserrat', sans-serif; font-size: 5.8rem; line-height: 0.85; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; }
+    .hero-title .asterisk { color: #5B8DF6; font-size: 4.5rem; vertical-align: middle; }
+    
+    .hero-tagline { background-color: var(--yellow); border: 2px solid var(--dark); padding: 10px 18px; font-family: 'Architects Daughter', cursive; font-size: 1.25rem; font-weight: 700; display: inline-block; transform: rotate(-2deg); box-shadow: 3px 3px 0px var(--dark); margin-top: 20px; border-radius: 4px; }
+    .location-tag { margin-top: 20px; display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 800; }
 
-    .tagline-box { background-color: var(--yellow); border: 2px solid var(--dark); padding: 12px 20px; font-family: 'Architects Daughter', cursive; font-size: 1.2rem; font-weight: 700; display: inline-block; transform: rotate(-1.5deg); box-shadow: 4px 4px 0px var(--dark); margin-top: 25px; border-radius: 4px; }
+    /* Visual Kanan (Foto + Blob Kuning) */
+    .hero-right { position: relative; height: 500px; display: flex; justify-content: center; align-items: flex-end; }
     
-    .location-info { display: flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-
-    /* Photo & Yellow Blob Area */
-    .hero-image-wrapper { position: relative; width: 100%; height: 500px; display: flex; justify-content: center; align-items: flex-end; }
-    
-    /* Bentuk Kuning Abstrak (Blob) */
+    /* Blob Kuning Abstrak Presisi */
     .yellow-blob {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: -20px;
+      right: -20px;
       width: 480px;
       height: 480px;
       background-color: var(--yellow);
-      /* Formula Border Radius untuk membuat bentuk Blob Organik */
-      border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      border-radius: 45% 55% 60% 40% / 40% 50% 50% 60%;
       z-index: 1;
     }
 
-    /* Sticker Top Right */
+    /* Stiker "Design with Purpose" */
     .sticker-purpose {
       position: absolute;
-      top: -10px;
+      top: -15px;
       right: 20px;
-      z-index: 4;
+      z-index: 5;
       background: var(--yellow);
       border-radius: 50%;
       width: 90px;
@@ -69,88 +67,70 @@
       text-align: center;
       font-weight: 800;
       font-size: 0.65rem;
-      border: 2px dashed var(--dark);
+      border: 1.5px dashed var(--dark);
       transform: rotate(12deg);
     }
 
-    /* Subjek Foto (Tanpa Background) */
-    .hero-person-img {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      object-fit: contain;
-    }
+    /* Model Transparan PNG */
+    .model-img { position: relative; z-index: 3; height: 100%; object-fit: contain; }
 
-    /* Sticker Superpower */
+    /* Badge "Design is My Superpower" */
     .badge-superpower {
       position: absolute;
-      bottom: 40px;
-      right: -10px;
-      z-index: 3;
-      background: #3B82F6;
+      bottom: 60px;
+      right: 10px;
+      z-index: 5;
+      background: #4A82F6;
       color: white;
       padding: 12px 20px;
-      border-radius: 15px;
+      border-radius: 14px;
       font-family: 'Architects Daughter', cursive;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      transform: rotate(6deg);
+      line-height: 1.1;
+      transform: rotate(5deg);
       border: 3px solid white;
       box-shadow: 4px 4px 0px var(--dark);
-      line-height: 1.1;
     }
 
-    /* Decorative Elements */
-    .dot-pattern { position: absolute; top: 10px; left: 15%; width: 80px; opacity: 0.3; z-index: 1; }
-    .plus-icon { position: absolute; right: 10%; bottom: 45%; color: white; font-size: 2rem; font-weight: bold; z-index: 3; text-shadow: 2px 2px var(--dark); }
+    /* --- WHAT I DO SECTION --- */
+    .what-i-do { padding: 30px 5%; display: grid; grid-template-columns: 180px 1fr; gap: 20px; align-items: center; border-top: 2px solid rgba(0,0,0,0.05); }
+    .section-title h3 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; line-height: 0.95; text-transform: uppercase; }
+    
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; text-align: center; }
+    .service-card { padding: 10px; }
+    .icon-circle { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--dark); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .service-card h4 { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
+    .service-card p { font-size: 0.7rem; color: #555; line-height: 1.2; }
 
-    /* Responsif */
+    /* --- SELECTED WORK SECTION --- */
+    .selected-work { background-color: var(--blue); padding: 40px 5%; color: white; border-top: 3px solid var(--dark); border-bottom: 3px solid var(--dark); }
+    .selected-work h3 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 25px; letter-spacing: -1px; }
+    
+    .portfolio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .work-card { background: var(--card-bg); border: 2px solid var(--dark); border-radius: 16px; padding: 12px; color: var(--dark); box-shadow: 4px 4px 0px var(--dark); display: flex; flex-direction: column; justify-content: space-between; }
+    .work-img { width: 100%; height: 170px; object-fit: cover; border-radius: 10px; border: 1.5px solid var(--dark); margin-bottom: 12px; }
+    
+    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+    .card-info h5 { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; }
+    .card-info span { font-size: 0.7rem; color: #666; font-weight: 600; }
+    .arrow-btn { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--dark); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; }
+
+    /* --- FOOTER / CTA SECTION --- */
+    .cta-footer { background-color: var(--yellow); display: grid; grid-template-columns: 1fr 400px; border-bottom: 3px solid var(--dark); }
+    .cta-left { padding: 50px 5%; display: flex; flex-direction: column; justify-content: center; }
+    .cta-left h2 { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 900; text-transform: uppercase; line-height: 0.95; }
+    .cta-left h2 span { color: var(--red); font-family: 'Caveat', cursive; text-transform: none; display: block; font-size: 3.5rem; transform: rotate(-2deg); margin-top: 5px; }
+    .cta-left p { margin-top: 15px; font-weight: 700; font-size: 0.9rem; }
+
+    .cta-right { background-color: var(--red); color: white; padding: 40px 30px; display: flex; flex-direction: column; justify-content: center; border-left: 3px solid var(--dark); clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); }
+    .contact-btn { background: white; color: var(--dark); border: 2px solid var(--dark); font-weight: 800; padding: 6px 16px; border-radius: 20px; display: inline-block; font-size: 0.75rem; margin-bottom: 20px; width: fit-content; }
+    .contact-info { display: flex; flex-direction: column; gap: 10px; font-size: 0.8rem; font-weight: 600; }
+
+    /* BOTTOM BAR */
+    .bottom-bar { background: var(--blue); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .freelance-btn { background: white; color: var(--dark); border: 2px solid var(--dark); padding: 8px 20px; border-radius: 30px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+
+    /* RESPONSIVE DESIGN FOR MOBILE */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-text h1 { font-size: 4.5rem; }
-      .hero-image-wrapper { height: 400px; margin-top: 30px; }
-      .yellow-blob { width: 320px; height: 320px; left: 50%; transform: translateX(-50%); }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="header-left">
-      <span class="star-icon">★</span>
-      <span>GRAPHIC & WEB DESIGNER</span>
-    </div>
-    <div class="badge-portfolio">CREATIVE PORTFOLIO</div>
-  </header>
-
-  <section class="hero">
-    <div class="hero-text">
-      <h2>Hello!</h2>
-      <h1>I'M <span class="asterisk">✶</span><br>DAMERS</h1>
-      <div class="tagline-box">
-        I design digital experiences that connect & convert.
-      </div>
-      <div class="location-info">
-        🌐 BASED IN ANY CITY, ST &bull; WORKING WORLDWIDE
-      </div>
-    </div>
-
-    <div class="hero-image-wrapper">
-      <div class="sticker-purpose">
-        DESIGN<br>😊<br><small>with purpose</small>
-      </div>
-
-      <div class="yellow-blob"></div>
-
-      <img src="https://i.ibb.co/C03S48t/model-nobg.png" alt="Damers" class="hero-person-img">
-
-      <div class="badge-superpower">
-        DESIGN<br>IS MY ⚡<br>SUPERPOWER
-      </div>
-
-      <div class="plus-icon">+</div>
-    </div>
-  </section>
-
-</body>
-</html>
+      .hero, .what-i-do, .
