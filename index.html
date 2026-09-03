@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dennis Snellenberg • Fixed Preloader</title>
+  <title>Dennis Snellenberg • Complete Clone</title>
 
-  <!-- GSAP & Lenis CDN -->
+  <!-- Library GSAP & Lenis CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
   <style>
+    /* RESET & DASAR */
     * {
       margin: 0;
       padding: 0;
@@ -19,8 +20,10 @@
 
     :root {
       --bg-dark: #1c1d20;
+      --bg-loader: #141516;
       --text-white: #ffffff;
       --text-black: #1c1d20;
+      --accent-blue: #455ce9;
     }
 
     body {
@@ -29,15 +32,15 @@
       overflow-x: hidden;
     }
 
-    /* FIX PRELOADER CONTAINER */
+    /* 1. INTRO / PRELOADER GREETING */
     .preloader {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
-      background-color: #141516;
-      z-index: 99999;
+      background-color: var(--bg-loader);
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -52,20 +55,20 @@
     }
 
     .preloader-dot {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       background-color: #ffffff;
       border-radius: 50%;
     }
 
-    .preloader-text {
-      font-size: 3rem;
+    .greeting-text {
+      font-size: 3.5rem;
       font-weight: 300;
       color: #ffffff;
-      min-width: 250px;
+      min-width: 280px;
     }
 
-    /* CURSED SVG SLIDE OUT */
+    /* SVG Curve Transition */
     .svg-container {
       position: absolute;
       top: 0;
@@ -77,10 +80,30 @@
     .svg-container svg {
       width: 100%;
       height: 100%;
-      fill: #141516;
+      fill: var(--bg-loader);
     }
 
-    /* HERO & NAVBAR */
+    /* 2. CUSTOM CURSOR FOLLOWER */
+    .cursor-follower {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      background-color: var(--accent-blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #fff;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* 3. NAVBAR */
     header {
       position: fixed;
       top: 0;
@@ -90,39 +113,50 @@
       justify-content: space-between;
       align-items: center;
       z-index: 100;
+      mix-blend-mode: difference;
     }
 
-    .logo, nav a {
+    .logo {
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+
+    nav a {
       color: var(--text-white);
       text-decoration: none;
+      margin-left: 35px;
+      font-size: 16px;
     }
 
-    nav a { margin-left: 30px; }
-
+    /* 4. HERO SECTION */
     .hero {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding-bottom: 50px;
-    }
-
-    .hero-title {
-      font-size: 8vw;
-      font-weight: 400;
-      white-space: nowrap;
-      text-transform: uppercase;
+      padding-bottom: 60px;
+      position: relative;
     }
 
     .marquee-container {
       display: flex;
       overflow: hidden;
+      user-select: none;
     }
 
     .marquee-text {
       display: flex;
       gap: 30px;
       animation: marquee 20s linear infinite;
+    }
+
+    .hero-title {
+      font-size: 8vw;
+      font-weight: 400;
+      line-height: 0.9;
+      white-space: nowrap;
+      text-transform: uppercase;
     }
 
     @keyframes marquee {
@@ -135,17 +169,107 @@
       margin-top: 40px;
       display: flex;
       justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .hero-sub p {
+      max-width: 380px;
+      font-size: 18px;
+      line-height: 1.5;
       color: #a2a2a2;
+    }
+
+    /* 5. WORK SECTION */
+    .works {
+      padding: 120px 50px;
+      background-color: #ffffff;
+      color: var(--text-black);
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 60px;
+      color: #666;
+    }
+
+    .work-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 45px 0;
+      border-top: 1px solid #ddd;
+      text-decoration: none;
+      color: var(--text-black);
+      transition: opacity 0.3s ease;
+    }
+
+    .work-item:hover {
+      opacity: 0.4;
+    }
+
+    .work-item h2 {
+      font-size: 4.5vw;
+      font-weight: 400;
+    }
+
+    .work-item span {
+      font-size: 16px;
+      color: #666;
+    }
+
+    /* 6. FOOTER */
+    footer {
+      padding: 100px 50px 40px 50px;
+      background-color: var(--bg-dark);
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .footer-title h1 {
+      font-size: 7vw;
+      font-weight: 300;
+      margin-bottom: 40px;
+      line-height: 1.1;
+    }
+
+    .btn-magnetic {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 180px;
+      background-color: var(--accent-blue);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 18px;
+      margin-bottom: 50px;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #333;
+      padding-top: 25px;
+      color: #888;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <!-- PRELOADER FIXED -->
+  <!-- PRELOADER INTRO GREETING -->
   <div class="preloader" id="preloader">
     <div class="preloader-content" id="preloader-content">
       <span class="preloader-dot"></span>
-      <h1 class="preloader-text" id="greeting">Hello</h1>
+      <h1 class="greeting-text" id="greeting">Hello</h1>
     </div>
     <div class="svg-container">
       <svg>
@@ -154,16 +278,20 @@
     </div>
   </div>
 
-  <!-- WEBSITE CONTENT -->
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-follower" id="cursor">View</div>
+
+  <!-- NAVBAR -->
   <header>
     <a href="#" class="logo">© Code by Dennis</a>
     <nav>
-      <a href="#">Work</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <!-- HERO SECTION -->
   <section class="hero">
     <div class="marquee-container">
       <div class="marquee-text">
@@ -174,12 +302,48 @@
       </div>
     </div>
     <div class="hero-sub">
-      <p>Helping brands to stand out in the digital era.</p>
+      <p>Helping brands to stand out in the digital era. Together we will set the new status quo. No nonsense, always on the cutting edge.</p>
       <p>Located in the Netherlands</p>
     </div>
   </section>
 
+  <!-- WORKS SECTION -->
+  <section class="works" id="work">
+    <p class="section-title">Recent Work</p>
+    
+    <a href="#" class="work-item">
+      <h2>TWICE</h2>
+      <span>Interaction & Development</span>
+    </a>
+    <a href="#" class="work-item">
+      <h2>The Damai</h2>
+      <span>Design & Development</span>
+    </a>
+    <a href="#" class="work-item">
+      <h2>FABRIC™</h2>
+      <span>Design & Development</span>
+    </a>
+    <a href="#" class="work-item">
+      <h2>Aanstekelijk</h2>
+      <span>Design & Development</span>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-title">
+      <h1>Let's work<br>together</h1>
+      <a href="mailto:info@dennissnellenberg.com" class="btn-magnetic">Get in touch</a>
+    </div>
+    <div class="footer-bottom">
+      <p>2026 © Edition</p>
+      <p>Local time 02:00 AM GMT+2</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT UTAMA -->
   <script>
+    // --- 1. GREETING INTRO & CURVE ANIMATION ---
     const words = [
       "Hello",
       "Bonjour",
@@ -197,35 +361,32 @@
     const preloaderContent = document.getElementById("preloader-content");
     const path = document.getElementById("svg-path");
 
+    // Menghitung koordinat SVG secara dinamis berdasarkan layar
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    // Kalkulasi jalur kurva SVG sesuai ukuran layar
     const initialPath = `M0 0 L${width} 0 L${width} ${height} Q${width/2} ${height + 300} 0 ${height} Z`;
     const targetPath = `M0 0 L${width} 0 L${width} 0 Q${width/2} 0 0 0 Z`;
 
     path.setAttribute("d", initialPath);
 
     let index = 0;
-
-    // Pergantian teks sapaan
     const interval = setInterval(() => {
       index++;
       if (index < words.length) {
         greetingElement.textContent = words[index];
       } else {
         clearInterval(interval);
-        exitAnimation();
+        animatePreloaderOut();
       }
-    }, 150);
+    }, 160);
 
-    // Animasi Keluar (Exit Animation) yang Halus
-    function exitAnimation() {
+    function animatePreloaderOut() {
       const tl = gsap.timeline();
 
       tl.to(preloaderContent, {
         opacity: 0,
-        duration: 0.3,
+        duration: 0.2,
         ease: "power2.out"
       })
       .to(path, {
@@ -241,13 +402,65 @@
       .set(preloader, { display: "none" });
     }
 
-    // Smooth Scroll
-    const lenis = new Lenis();
+    // --- 2. SMOOTH SCROLLING (LENIS) ---
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
+    });
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    // --- 3. CUSTOM CURSOR FOLLOWER ---
+    const cursor = document.getElementById('cursor');
+    const workItems = document.querySelectorAll('.work-item');
+
+    document.addEventListener('mousemove', (e) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+    });
+
+    workItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        gsap.to(cursor, { scale: 1, duration: 0.3 });
+      });
+      item.addEventListener('mouseleave', () => {
+        gsap.to(cursor, { scale: 0, duration: 0.3 });
+      });
+    });
+
+    // --- 4. MAGNETIC BUTTON EFFECT ---
+    const magneticBtn = document.querySelector('.btn-magnetic');
+
+    magneticBtn.addEventListener('mousemove', (e) => {
+      const position = magneticBtn.getBoundingClientRect();
+      const x = e.clientX - position.left - position.width / 2;
+      const y = e.clientY - position.top - position.height / 2;
+
+      gsap.to(magneticBtn, {
+        x: x * 0.4,
+        y: y * 0.4,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+
+    magneticBtn.addEventListener('mouseleave', () => {
+      gsap.to(magneticBtn, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.3)"
+      });
+    });
   </script>
 </body>
 </html>
