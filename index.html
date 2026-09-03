@@ -38,7 +38,7 @@
     .hero-desc { font-size: 0.9rem; color: #444; max-width: 360px; line-height: 1.5; margin-bottom: 25px; font-weight: 500; }
     .btn-main { background: var(--yellow-bright); border: 1px solid var(--dark); padding: 12px 26px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; cursor: pointer; box-shadow: 2.5px 2.5px 0px var(--dark); }
 
-    /* KOTAK HERO - GAMBAR ATAS BARU */
+    /* KOTAK HERO - GAMBAR TRANSPARAN TANPA BACKGROUND KUNING */
     .hero-visual { 
       position: relative; 
       display: flex; 
@@ -47,19 +47,7 @@
       height: 380px; 
       overflow: hidden; 
       border-radius: 12px;
-    }
-
-    .paint-bg { 
-      position: absolute; 
-      top: 0; 
-      right: 10px; 
-      width: 100%; 
-      max-width: 360px; 
-      height: 100%; 
-      background: var(--yellow-bright); 
-      transform: rotate(4deg); 
-      border-radius: 12px; 
-      z-index: 1; 
+      background: transparent;
     }
     
     .hero-img { 
@@ -68,9 +56,7 @@
       width: 100%; 
       max-width: 360px; 
       height: 100%; 
-      object-fit: cover; 
-      object-position: center 25%; /* Nendang balok hitam ke atas & fokus ke wajah */
-      border-radius: 12px; 
+      object-fit: contain; /* Memastikan seluruh PNG transparan tampil utuh */
       display: block; 
     }
 
@@ -79,7 +65,6 @@
     /* --- ABOUT ME --- */
     .about { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 80px 6%; background: var(--bg-card); border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); align-items: center; }
     
-    /* KOTAK ABOUT - GAMBAR BAWAH BARU */
     .about-img-wrapper {
       width: 100%;
       max-width: 360px;
@@ -94,7 +79,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover; 
-      object-position: center 30%; /* Nendang balok hitam ke atas & fokus ke foto kolase */
+      object-position: center 30%; 
       border-radius: 12px;
       display: block;
     }
@@ -181,9 +166,8 @@
       <button class="btn-main">VIEW MY WORK →</button>
     </div>
     <div class="hero-visual">
-      <div class="paint-bg"></div>
-      <!-- LINK GAMBAR ATAS BARU -->
-      <img src="https://i.postimg.cc/J0K2hc53/image.png" alt="Ruly Damers" class="hero-img">
+      <!-- FOTO PNG TRANSPARAN TERBARU KAMU -->
+      <img src="https://i.postimg.cc/sx614qJN/image-removebg-preview.png" alt="Ruly Damers" class="hero-img">
       <div class="doodle-eye">👁</div>
     </div>
   </section>
@@ -191,7 +175,6 @@
   <!-- ABOUT ME -->
   <section class="about" id="about">
     <div class="about-img-wrapper">
-      <!-- LINK GAMBAR BAWAH BARU -->
       <img src="https://i.postimg.cc/QdFyX79w/image.png" alt="Ruly Damers Studio" class="about-img">
     </div>
     <div>
