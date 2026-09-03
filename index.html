@@ -38,12 +38,13 @@
     .hero-desc { font-size: 0.9rem; color: #444; max-width: 360px; line-height: 1.5; margin-bottom: 25px; font-weight: 500; }
     .btn-main { background: var(--yellow-bright); border: 1px solid var(--dark); padding: 12px 26px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; cursor: pointer; box-shadow: 2.5px 2.5px 0px var(--dark); }
 
-    /* --- SETTING GAMBAR PAS SESUAI KOTAK MERAH --- */
     .hero-visual { 
       position: relative; 
       display: flex; 
       justify-content: center; 
-      height: 380px; /* Samakan tinggi kotak gambar dengan teks kiri */
+      height: 380px; 
+      overflow: hidden; /* Memastikan gambar tidak melewati batas bingkai */
+      border-radius: 8px;
     }
 
     .paint-bg { 
@@ -59,14 +60,16 @@
       z-index: 1; 
     }
     
+    /* FIX: FULL GAMBAR & HILANGKAN BALOK HITAM HERO */
     .hero-img { 
       position: relative; 
       z-index: 2; 
       width: 100%; 
       max-width: 360px; 
-      height: 100%; /* Isi penuh tinggi 380px */
-      object-fit: cover; /* Crop gambar agar pas di dalam bingkai */
-      object-position: center top; /* Tetap fokus di kepala/badan atas */
+      height: 380px; 
+      object-fit: cover; 
+      object-position: center bottom; /* Geser fokus ke bawah agar bagian hitam atas terpotong */
+      transform: scale(1.08); /* Zoom tipis untuk buang garis/balok hitam bawaan foto */
       border-radius: 8px; 
       display: block; 
     }
@@ -76,16 +79,25 @@
     /* --- ABOUT ME --- */
     .about { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 80px 6%; background: var(--bg-card); border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); align-items: center; }
     
-    .about-img {
+    .about-img-wrapper {
       width: 100%;
       max-width: 360px;
       height: 380px;
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+
+    /* FIX: FULL GAMBAR & HILANGKAN BALOK HITAM ABOUT ME */
+    .about-img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center bottom; /* Geser fokus ke bawah agar bagian hitam atas terpotong */
+      transform: scale(1.08); /* Zoom tipis untuk buang garis/balok hitam bawaan foto */
       border-radius: 12px;
       border: 1px solid rgba(0,0,0,0.1);
       display: block;
-      margin: 0 auto;
     }
     
     .about-title { font-family: 'Instrument Serif', serif; font-size: 3.5rem; line-height: 1; margin-bottom: 20px; font-weight: 400; }
@@ -171,7 +183,6 @@
     </div>
     <div class="hero-visual">
       <div class="paint-bg"></div>
-      <!-- Menggunakan foto pasangan kartun -->
       <img src="https://i.postimg.cc/TwHJp7Wk/ea9f52a3-881a-4326-bae9-4a3008a952cd.jpg" alt="Ruly Damers" class="hero-img">
       <div class="doodle-eye">👁</div>
     </div>
@@ -179,7 +190,7 @@
 
   <!-- ABOUT ME -->
   <section class="about" id="about">
-    <div>
+    <div class="about-img-wrapper">
       <img src="https://i.postimg.cc/pLCH3zFw/image.png" alt="Ruly Damers Studio" class="about-img">
     </div>
     <div>
