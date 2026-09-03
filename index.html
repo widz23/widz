@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruly Damers • Replicating Layout</title>
+  <title>Dennis Snellenberg • Preloader & Website</title>
 
-  <!-- GSAP & Lenis CDN untuk Smooth Scroll & Animasi -->
+  <!-- GSAP & Lenis CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
   <style>
-    /* RESET & VARS */
     * {
       margin: 0;
       padding: 0;
@@ -21,7 +19,6 @@
 
     :root {
       --bg-dark: #1c1d20;
-      --bg-light: #999d9e;
       --text-white: #ffffff;
       --text-black: #1c1d20;
     }
@@ -30,6 +27,45 @@
       background-color: var(--bg-dark);
       color: var(--text-white);
       overflow-x: hidden;
+    }
+
+    /* PRELOADER STYLES */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #141516;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preloader-text {
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .preloader-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .svg-curve {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: calc(100% + 300px);
+      pointer-events: none;
+      fill: #141516;
     }
 
     /* CUSTOM CURSOR */
@@ -49,7 +85,6 @@
       font-size: 14px;
       color: #fff;
       transform: translate(-50%, -50%) scale(0);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* NAVBAR */
@@ -76,7 +111,6 @@
       text-decoration: none;
       margin-left: 30px;
       font-size: 16px;
-      position: relative;
     }
 
     /* HERO SECTION */
@@ -129,7 +163,7 @@
       color: #a2a2a2;
     }
 
-    /* WORK SECTION */
+    /* WORKS SECTION */
     .works {
       padding: 100px 50px;
       background-color: #ffffff;
@@ -170,125 +204,116 @@
       font-size: 16px;
       color: #666;
     }
-
-    /* FOOTER / CONTACT */
-    footer {
-      padding: 100px 50px 50px 50px;
-      background-color: var(--bg-dark);
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .footer-title h1 {
-      font-size: 7vw;
-      font-weight: 300;
-      margin-bottom: 30px;
-    }
-
-    .btn-magnetic {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 180px;
-      height: 180px;
-      background-color: #455ce9;
-      color: white;
-      border-radius: 50%;
-      text-decoration: none;
-      font-size: 18px;
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
   </style>
 </head>
 <body>
 
-  <!-- Custom Cursor Follower -->
+  <!-- PRELOADER EFEK DENNIS SNELLENBERG -->
+  <div class="preloader">
+    <div class="preloader-text">
+      <span class="preloader-dot"></span>
+      <span id="words">Hello</span>
+    </div>
+    <svg class="svg-curve">
+      <path id="svg-path" d="M0,0 L1000,0 L1000,1000 Q500,1000 0,1000 Z"></path>
+    </svg>
+  </div>
+
+  <!-- MAIN WEBSITE CONTENT -->
   <div class="cursor-follower" id="cursor">View</div>
 
-  <!-- Header / Navigation -->
   <header>
-    <a href="#" class="logo">© Code by Damers</a>
+    <a href="#" class="logo">© Code by Dennis</a>
     <nav>
-      <a href="#work" class="nav-link">Work</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- Hero Section dengan Marquee Text -->
   <section class="hero">
     <div class="marquee-container">
       <div class="marquee-text">
-        <span class="hero-title">Ruly Damers —</span>
-        <span class="hero-title">Sri Widz —</span>
-        <span class="hero-title">Ruly Damers —</span>
-        <span class="hero-title">Sri Widz —</span>
+        <span class="hero-title">Dennis Snellenberg —</span>
+        <span class="hero-title">Freelance Designer & Developer —</span>
+        <span class="hero-title">Dennis Snellenberg —</span>
+        <span class="hero-title">Freelance Designer & Developer —</span>
       </div>
     </div>
     <div class="hero-sub">
       <p>Helping brands to stand out in the digital era. Together we will set the new status quo.</p>
-      <p>Located in the Jakarta</p>
+      <p>Located in the Netherlands</p>
     </div>
   </section>
 
-  <!-- Work Section -->
   <section class="works" id="work">
     <p class="section-title">Recent Work</p>
-    
-    <a href="#" class="work-item" data-hover="View">
+    <a href="#" class="work-item">
       <h2>TWICE</h2>
       <span>Interaction & Development</span>
     </a>
-    <a href="#" class="work-item" data-hover="View">
+    <a href="#" class="work-item">
       <h2>The Damai</h2>
       <span>Design & Development</span>
     </a>
-    <a href="#" class="work-item" data-hover="View">
+    <a href="#" class="work-item">
       <h2>FABRIC™</h2>
-      <span>Design & Development</span>
-    </a>
-    <a href="#" class="work-item" data-hover="View">
-      <h2>Aanstekelijk</h2>
       <span>Design & Development</span>
     </a>
   </section>
 
-  <!-- Footer Section -->
-  <footer id="contact">
-    <div class="footer-title">
-      <h1>Let's work<br>together</h1>
-      <a href="mailto:info@example.com" class="btn-magnetic">Get in touch</a>
-    </div>
-    <div style="display: flex; justify-content: space-between; border-top: 1px solid #333; padding-top: 20px;">
-      <p>© 2026 Edition</p>
-      <p>Local time 05:50 AM GMT+7</p>
-    </div>
-  </footer>
-
-  <!-- Interaktivitas & Animasi Javascript -->
   <script>
-    // 1. SCRIPT INTRO GREETINGS (MULTILANGUAGE)
-    const greetings = ["Halo", "Hello", "Bonjour", "Ciao", "Olà", "Konnichiwa", "Selamat Datang"];
-    const greetingText = document.getElementById("greeting-text");
-    const preloader = document.getElementById("preloader");
+    // 1. DAFTAR BAHASA UNTUK INTRO PRELOADER
+    const words = [
+      "Hello",
+      "Bonjour",
+      "Selamat datang",
+      "Ciao",
+      "Olá",
+      "おい",
+      "Hallå",
+      "Guten tag",
+      "Hallo"
+    ];
+
+    const wordElement = document.getElementById("words");
+    const preloader = document.querySelector(".preloader");
+    const svgPath = document.getElementById("svg-path");
+
     let index = 0;
 
-    function updateGreeting() {
-      if (index < greetings.length) {
-        greetingText.innerText = greetings[index];
-        index++;
-        setTimeout(updateGreeting, 180); // Kecepatan pergantian kata
+    // Ganti kata setiap 180ms
+    const wordInterval = setInterval(() => {
+      index++;
+      if (index < words.length) {
+        wordElement.textContent = words[index];
       } else {
-        // Efek tirai naik ke atas setelah kata terakhir selesai
-        setTimeout(() => {
-          preloader.classList.add("slide-up");
-        }, 300);
+        clearInterval(wordInterval);
+        animateOutPreloader();
       }
+    }, 180);
+
+    // Animasi kurva SVG naik ke atas saat preloader selesai
+    function animateOutPreloader() {
+      const initialPath = `M0 0 L${window.innerWidth} 0 L${window.innerWidth} ${window.innerHeight} Q${window.innerWidth / 2} ${window.innerHeight + 300} 0 ${window.innerHeight} Z`;
+      const targetPath = `M0 0 L${window.innerWidth} 0 L${window.innerWidth} 0 Q${window.innerWidth / 2} 0 0 0 Z`;
+
+      const tl = gsap.timeline();
+
+      tl.to(svgPath, {
+        attr: { d: targetPath },
+        duration: 0.8,
+        ease: "power2.in"
+      })
+      .to(preloader, {
+        y: "-100%",
+        duration: 0.8,
+        ease: "power4.inOut"
+      }, "-=0.8")
+      .set(preloader, { display: "none" });
     }
-    
-    // 1. Smooth Scroll menggunakan Lenis
+
+    // 2. SMOOTH SCROLL (LENIS)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -301,7 +326,7 @@
     }
     requestAnimationFrame(raf);
 
-    // 2. Custom Cursor Hover Effect pada Work Items
+    // 3. CURSOR FOLLOWER
     const cursor = document.getElementById('cursor');
     const workItems = document.querySelectorAll('.work-item');
 
@@ -315,37 +340,8 @@
     });
 
     workItems.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        gsap.to(cursor, { scale: 1, duration: 0.3 });
-      });
-      item.addEventListener('mouseleave', () => {
-        gsap.to(cursor, { scale: 0, duration: 0.3 });
-      });
-    });
-
-    // 3. Magnetic Button Effect untuk Tombol CTA
-    const magneticBtn = document.querySelector('.btn-magnetic');
-
-    magneticBtn.addEventListener('mousemove', (e) => {
-      const position = magneticBtn.getBoundingClientRect();
-      const x = e.clientX - position.left - position.width / 2;
-      const y = e.clientY - position.top - position.height / 2;
-
-      gsap.to(magneticBtn, {
-        x: x * 0.4,
-        y: y * 0.4,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    });
-
-    magneticBtn.addEventListener('mouseleave', () => {
-      gsap.to(magneticBtn, {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-        ease: "elastic.out(1, 0.3)"
-      });
+      item.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 1, duration: 0.3 }));
+      item.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 0, duration: 0.3 }));
     });
   </script>
 </body>
