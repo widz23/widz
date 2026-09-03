@@ -269,6 +269,25 @@
 
   <!-- Interaktivitas & Animasi Javascript -->
   <script>
+    // 1. SCRIPT INTRO GREETINGS (MULTILANGUAGE)
+    const greetings = ["Halo", "Hello", "Bonjour", "Ciao", "Olà", "Konnichiwa", "Selamat Datang"];
+    const greetingText = document.getElementById("greeting-text");
+    const preloader = document.getElementById("preloader");
+    let index = 0;
+
+    function updateGreeting() {
+      if (index < greetings.length) {
+        greetingText.innerText = greetings[index];
+        index++;
+        setTimeout(updateGreeting, 180); // Kecepatan pergantian kata
+      } else {
+        // Efek tirai naik ke atas setelah kata terakhir selesai
+        setTimeout(() => {
+          preloader.classList.add("slide-up");
+        }, 300);
+      }
+    }
+    
     // 1. Smooth Scroll menggunakan Lenis
     const lenis = new Lenis({
       duration: 1.2,
