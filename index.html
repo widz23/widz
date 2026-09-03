@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dennis Snellenberg • Preloader & Website</title>
+  <title>Dennis Snellenberg • Fixed Preloader</title>
 
   <!-- GSAP & Lenis CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -29,27 +29,26 @@
       overflow-x: hidden;
     }
 
-    /* PRELOADER STYLES */
+    /* FIX PRELOADER CONTAINER */
     .preloader {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       background-color: #141516;
-      z-index: 9999;
+      z-index: 99999;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
-    .preloader-text {
-      font-size: 3.5rem;
-      font-weight: 300;
-      color: #ffffff;
+    .preloader-content {
       display: flex;
       align-items: center;
       gap: 15px;
+      z-index: 2;
     }
 
     .preloader-dot {
@@ -59,35 +58,29 @@
       border-radius: 50%;
     }
 
-    .svg-curve {
+    .preloader-text {
+      font-size: 3rem;
+      font-weight: 300;
+      color: #ffffff;
+      min-width: 250px;
+    }
+
+    /* CURSED SVG SLIDE OUT */
+    .svg-container {
       position: absolute;
       top: 0;
       width: 100%;
       height: calc(100% + 300px);
       pointer-events: none;
+    }
+
+    .svg-container svg {
+      width: 100%;
+      height: 100%;
       fill: #141516;
     }
 
-    /* CUSTOM CURSOR */
-    .cursor-follower {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 80px;
-      height: 80px;
-      background-color: #455ce9;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #fff;
-      transform: translate(-50%, -50%) scale(0);
-    }
-
-    /* NAVBAR */
+    /* HERO & NAVBAR */
     header {
       position: fixed;
       top: 0;
@@ -97,36 +90,26 @@
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      mix-blend-mode: difference;
     }
 
-    .logo {
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--text-white);
-    }
-
-    nav a {
+    .logo, nav a {
       color: var(--text-white);
       text-decoration: none;
-      margin-left: 30px;
-      font-size: 16px;
     }
 
-    /* HERO SECTION */
+    nav a { margin-left: 30px; }
+
     .hero {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding-bottom: 50px;
-      position: relative;
     }
 
     .hero-title {
       font-size: 8vw;
       font-weight: 400;
-      line-height: 0.9;
       white-space: nowrap;
       text-transform: uppercase;
     }
@@ -134,7 +117,6 @@
     .marquee-container {
       display: flex;
       overflow: hidden;
-      user-select: none;
     }
 
     .marquee-text {
@@ -153,81 +135,32 @@
       margin-top: 40px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .hero-sub p {
-      max-width: 350px;
-      font-size: 18px;
-      line-height: 1.5;
       color: #a2a2a2;
-    }
-
-    /* WORKS SECTION */
-    .works {
-      padding: 100px 50px;
-      background-color: #ffffff;
-      color: var(--text-black);
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
-    }
-
-    .section-title {
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 50px;
-      color: #666;
-    }
-
-    .work-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 40px 0;
-      border-top: 1px solid #ddd;
-      text-decoration: none;
-      color: var(--text-black);
-      transition: opacity 0.3s ease;
-    }
-
-    .work-item:hover {
-      opacity: 0.5;
-    }
-
-    .work-item h2 {
-      font-size: 4vw;
-      font-weight: 400;
-    }
-
-    .work-item span {
-      font-size: 16px;
-      color: #666;
     }
   </style>
 </head>
 <body>
 
-  <!-- PRELOADER EFEK DENNIS SNELLENBERG -->
-  <div class="preloader">
-    <div class="preloader-text">
+  <!-- PRELOADER FIXED -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content" id="preloader-content">
       <span class="preloader-dot"></span>
-      <span id="words">Hello</span>
+      <h1 class="preloader-text" id="greeting">Hello</h1>
     </div>
-    <svg class="svg-curve">
-      <path id="svg-path" d="M0,0 L1000,0 L1000,1000 Q500,1000 0,1000 Z"></path>
-    </svg>
+    <div class="svg-container">
+      <svg>
+        <path id="svg-path"></path>
+      </svg>
+    </div>
   </div>
 
-  <!-- MAIN WEBSITE CONTENT -->
-  <div class="cursor-follower" id="cursor">View</div>
-
+  <!-- WEBSITE CONTENT -->
   <header>
     <a href="#" class="logo">© Code by Dennis</a>
     <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#">Work</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </nav>
   </header>
 
@@ -241,29 +174,12 @@
       </div>
     </div>
     <div class="hero-sub">
-      <p>Helping brands to stand out in the digital era. Together we will set the new status quo.</p>
+      <p>Helping brands to stand out in the digital era.</p>
       <p>Located in the Netherlands</p>
     </div>
   </section>
 
-  <section class="works" id="work">
-    <p class="section-title">Recent Work</p>
-    <a href="#" class="work-item">
-      <h2>TWICE</h2>
-      <span>Interaction & Development</span>
-    </a>
-    <a href="#" class="work-item">
-      <h2>The Damai</h2>
-      <span>Design & Development</span>
-    </a>
-    <a href="#" class="work-item">
-      <h2>FABRIC™</h2>
-      <span>Design & Development</span>
-    </a>
-  </section>
-
   <script>
-    // 1. DAFTAR BAHASA UNTUK INTRO PRELOADER
     const words = [
       "Hello",
       "Bonjour",
@@ -276,31 +192,43 @@
       "Hallo"
     ];
 
-    const wordElement = document.getElementById("words");
-    const preloader = document.querySelector(".preloader");
-    const svgPath = document.getElementById("svg-path");
+    const greetingElement = document.getElementById("greeting");
+    const preloader = document.getElementById("preloader");
+    const preloaderContent = document.getElementById("preloader-content");
+    const path = document.getElementById("svg-path");
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    // Kalkulasi jalur kurva SVG sesuai ukuran layar
+    const initialPath = `M0 0 L${width} 0 L${width} ${height} Q${width/2} ${height + 300} 0 ${height} Z`;
+    const targetPath = `M0 0 L${width} 0 L${width} 0 Q${width/2} 0 0 0 Z`;
+
+    path.setAttribute("d", initialPath);
 
     let index = 0;
 
-    // Ganti kata setiap 180ms
-    const wordInterval = setInterval(() => {
+    // Pergantian teks sapaan
+    const interval = setInterval(() => {
       index++;
       if (index < words.length) {
-        wordElement.textContent = words[index];
+        greetingElement.textContent = words[index];
       } else {
-        clearInterval(wordInterval);
-        animateOutPreloader();
+        clearInterval(interval);
+        exitAnimation();
       }
-    }, 180);
+    }, 150);
 
-    // Animasi kurva SVG naik ke atas saat preloader selesai
-    function animateOutPreloader() {
-      const initialPath = `M0 0 L${window.innerWidth} 0 L${window.innerWidth} ${window.innerHeight} Q${window.innerWidth / 2} ${window.innerHeight + 300} 0 ${window.innerHeight} Z`;
-      const targetPath = `M0 0 L${window.innerWidth} 0 L${window.innerWidth} 0 Q${window.innerWidth / 2} 0 0 0 Z`;
-
+    // Animasi Keluar (Exit Animation) yang Halus
+    function exitAnimation() {
       const tl = gsap.timeline();
 
-      tl.to(svgPath, {
+      tl.to(preloaderContent, {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.out"
+      })
+      .to(path, {
         attr: { d: targetPath },
         duration: 0.8,
         ease: "power2.in"
@@ -313,36 +241,13 @@
       .set(preloader, { display: "none" });
     }
 
-    // 2. SMOOTH SCROLL (LENIS)
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true
-    });
-
+    // Smooth Scroll
+    const lenis = new Lenis();
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-
-    // 3. CURSOR FOLLOWER
-    const cursor = document.getElementById('cursor');
-    const workItems = document.querySelectorAll('.work-item');
-
-    document.addEventListener('mousemove', (e) => {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.5,
-        ease: "power2.out"
-      });
-    });
-
-    workItems.forEach(item => {
-      item.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 1, duration: 0.3 }));
-      item.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 0, duration: 0.3 }));
-    });
   </script>
 </body>
 </html>
