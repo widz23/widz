@@ -263,35 +263,25 @@
   </section>
 
   <script>
-    // 1. DAFTAR BAHASA UNTUK INTRO PRELOADER
-    const words = [
-      "Hello",
-      "Bonjour",
-      "Selamat datang",
-      "Ciao",
-      "Olá",
-      "おい",
-      "Hallå",
-      "Guten tag",
-      "Hallo"
-    ];
-
-    const wordElement = document.getElementById("words");
-    const preloader = document.querySelector(".preloader");
-    const svgPath = document.getElementById("svg-path");
-
+    // PRELOADER HELLO INTRO
+    const greetings = ["Halo", "Hello", "Bonjour", "Ciao", "Olà", "Konnichiwa", "Selamat Datang"];
+    const greetingText = document.getElementById("greeting-text");
+    const preloader = document.getElementById("preloader");
     let index = 0;
 
-    // Ganti kata setiap 180ms
-    const wordInterval = setInterval(() => {
-      index++;
-      if (index < words.length) {
-        wordElement.textContent = words[index];
+    function updateGreeting() {
+      if (index < greetings.length) {
+        greetingText.innerText = greetings[index];
+        index++;
+        setTimeout(updateGreeting, 180);
       } else {
-        clearInterval(wordInterval);
-        animateOutPreloader();
+        setTimeout(() => {
+          preloader.classList.add("slide-up");
+        }, 300);
       }
-    }, 180);
+    }
+
+    window.addEventListener("DOMContentLoaded", updateGreeting);
 
     // Animasi kurva SVG naik ke atas saat preloader selesai
     function animateOutPreloader() {
