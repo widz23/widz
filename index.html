@@ -3,370 +3,331 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RULY DAMERS — Brand Designer</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Reenie+Beanie&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Damers • Replicating Layout</title>
+
+  <!-- GSAP & Lenis CDN untuk Smooth Scroll & Animasi -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
   <style>
+    /* RESET & VARS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
     :root {
-      --bg-cream: #F5F0E8;
-      --bg-card: #EBE4DA;
-      --orange: #E64A19;
-      --yellow-bright: #F5B041;
-      --dark: #121212;
-      --white: #FFFFFF;
-      --gray: #666666;
-
-      --social-facebook: #3b5998;
-      --social-twitter: #00acee;
-      --social-dribbble: #ea4c89;
-      --social-linkedin: #0e76a8;
-      --social-email: #f2a900;
+      --bg-dark: #1c1d20;
+      --bg-light: #999d9e;
+      --text-white: #ffffff;
+      --text-black: #1c1d20;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      background-color: var(--bg-cream); 
-      color: var(--dark); 
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
       overflow-x: hidden;
-      line-height: 1.4;
     }
 
-    /* --- NAVBAR --- */
-    nav {
+    /* CUSTOM CURSOR */
+    .cursor-follower {
       position: fixed;
       top: 0;
       left: 0;
+      width: 80px;
+      height: 80px;
+      background-color: #455ce9;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #fff;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
       width: 100%;
-      padding: 25px 5%;
+      padding: 30px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: rgba(245, 240, 232, 0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    .logo { font-weight: 900; font-size: 1.2rem; text-decoration: none; color: var(--dark); display: flex; align-items: center; gap: 5px; }
-    .logo span { color: var(--orange); }
-    .nav-links { display: flex; gap: 28px; list-style: none; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
-    .nav-links a { text-decoration: none; color: var(--dark); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--orange); }
-    .btn-cta-nav { 
-      background: var(--yellow-bright); 
-      border: 1px solid var(--dark); 
-      padding: 10px 20px; 
-      border-radius: 20px; 
-      font-weight: 800; 
-      font-size: 0.75rem; 
-      text-decoration: none;
-      color: var(--dark);
-      box-shadow: 2px 2px 0px var(--dark); 
+      mix-blend-mode: difference;
     }
 
-    /* --- HERO DENNIS SNELLENBERG STYLE --- */
-    .hero-dennis {
+    .logo {
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+
+    nav a {
+      color: var(--text-white);
+      text-decoration: none;
+      margin-left: 30px;
+      font-size: 16px;
       position: relative;
+    }
+
+    /* HERO SECTION */
+    .hero {
       height: 100vh;
-      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 120px 5% 40px;
-      overflow: hidden;
-      background-color: #999D9E;
-      color: var(--white);
+      justify-content: flex-end;
+      padding-bottom: 50px;
+      position: relative;
     }
 
-    .hero-top-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      z-index: 10;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    .status-badge {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 0.78rem;
-    }
-
-    .dot-green {
-      width: 8px;
-      height: 8px;
-      background-color: #2ECC71;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #2ECC71;
-    }
-
-    /* Foto Karakter Utama */
-    .hero-character-wrapper {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 5;
-      height: 75vh;
-      max-height: 580px;
-      pointer-events: none;
-    }
-
-    .hero-character-wrapper img {
-      height: 100%;
-      width: auto;
-      object-fit: contain;
-    }
-
-    /* Marquee Running Text */
-    .marquee-container {
-      position: absolute;
-      bottom: 40px;
-      left: 0;
-      width: 100%;
+    .hero-title {
+      font-size: 8vw;
+      font-weight: 400;
+      line-height: 0.9;
       white-space: nowrap;
-      overflow: hidden;
-      z-index: 2;
+      text-transform: uppercase;
     }
 
-    .marquee-content {
-      display: inline-flex;
-      will-change: transform;
+    .marquee-container {
+      display: flex;
+      overflow: hidden;
+      user-select: none;
     }
 
     .marquee-text {
-      font-size: 14vw;
-      font-weight: 900;
+      display: flex;
+      gap: 30px;
+      animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .hero-sub {
+      padding: 0 50px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .hero-sub p {
+      max-width: 350px;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #a2a2a2;
+    }
+
+    /* WORK SECTION */
+    .works {
+      padding: 100px 50px;
+      background-color: #ffffff;
+      color: var(--text-black);
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+    }
+
+    .section-title {
+      font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: -3px;
-      line-height: 0.8;
-      padding-right: 40px;
-      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 1px;
+      margin-bottom: 50px;
+      color: #666;
     }
 
-    .marquee-text span { color: var(--orange); }
-
-    /* --- ABOUT SECTION --- */
-    .about { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 60px; 
-      padding: 100px 6%; 
-      background: var(--bg-card); 
-      border-top: 1px solid rgba(0,0,0,0.06); 
-      border-bottom: 1px solid rgba(0,0,0,0.06); 
-      align-items: center; 
-    }
-    
-    .about-img-wrapper {
-      width: 100%;
-      max-width: 380px;
-      height: 400px;
-      overflow: hidden;
-      border-radius: 12px;
-      margin: 0 auto;
-      border: 1px solid rgba(0,0,0,0.1);
+    .work-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 0;
+      border-top: 1px solid #ddd;
+      text-decoration: none;
+      color: var(--text-black);
+      transition: opacity 0.3s ease;
     }
 
-    .about-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; 
-      display: block;
+    .work-item:hover {
+      opacity: 0.5;
     }
-    
-    .tag { color: var(--orange); font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-    .about-title { font-family: 'Instrument Serif', serif; font-size: 3.5rem; line-height: 1; margin-bottom: 20px; font-weight: 400; }
-    .about-title i { font-style: italic; color: var(--orange); }
-    .about-text { font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 25px; }
-    .signature { font-family: 'Reenie Beanie', cursive; font-size: 3rem; color: var(--dark); }
 
-    /* --- FEATURED PROJECTS --- */
-    .work { padding: 100px 6%; }
-    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-    .work-card { background: var(--white); border-radius: 12px; padding: 16px; border: 1px solid rgba(0,0,0,0.08); }
-    .work-card img { width: 100%; height: 260px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-    .work-card h4 { font-size: 1.05rem; font-weight: 900; }
-    .work-card p { font-size: 0.75rem; color: var(--gray); font-weight: 600; margin-top: 4px; }
-
-    /* --- SOCIAL MEDIA BAR --- */
-    .social-section { background-color: #222; padding: 35px 5%; display: flex; justify-content: center; }
-    .social-icons { display: flex; gap: 18px; }
-    .social-icon { 
-      width: 48px; height: 48px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-      color: white; text-decoration: none; font-size: 1.2rem; transition: transform 0.2s; 
+    .work-item h2 {
+      font-size: 4vw;
+      font-weight: 400;
     }
-    .social-icon:hover { transform: translateY(-3px); }
-    .social-icon.facebook  { background-color: var(--social-facebook); }
-    .social-icon.twitter   { background-color: var(--social-twitter); }
-    .social-icon.dribbble  { background-color: var(--social-dribbble); }
-    .social-icon.linkedin  { background-color: var(--social-linkedin); }
-    .social-icon.email     { background-color: var(--social-email); }
 
-    /* --- FOOTER --- */
-    footer { background: var(--dark); color: var(--white); padding: 70px 6% 30px; }
-    .footer-top { display: flex; justify-content: space-between; margin-bottom: 50px; }
-    .footer-brand p { color: #888; font-size: 0.8rem; margin-top: 12px; max-width: 280px; }
-    .footer-col h5 { font-size: 0.7rem; color: #888; margin-bottom: 12px; font-weight: 800; letter-spacing: 0.5px; }
-    .footer-col p, .footer-col a { font-size: 0.82rem; color: white; text-decoration: none; display: block; margin-bottom: 6px; }
-    .footer-bottom { border-top: 1px solid #222; padding-top: 25px; display: flex; justify-content: space-between; font-size: 0.72rem; color: #666; font-weight: 600; }
+    .work-item span {
+      font-size: 16px;
+      color: #666;
+    }
 
-    /* --- RESPONSIVE MOBILE --- */
-    @media (max-width: 900px) {
-      .hero-character-wrapper { height: 55vh; }
-      .marquee-text { font-size: 20vw; }
-      .about, .work-grid { grid-template-columns: 1fr; }
-      .footer-top { flex-direction: column; gap: 30px; }
+    /* FOOTER / CONTACT */
+    footer {
+      padding: 100px 50px 50px 50px;
+      background-color: var(--bg-dark);
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .footer-title h1 {
+      font-size: 7vw;
+      font-weight: 300;
+      margin-bottom: 30px;
+    }
+
+    .btn-magnetic {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 180px;
+      background-color: #455ce9;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 18px;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="#home" class="logo">RULY DAMERS <span>✶</span></a>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="btn-cta-nav">LET'S WORK TOGETHER →</a>
-  </nav>
+  <!-- Custom Cursor Follower -->
+  <div class="cursor-follower" id="cursor">View</div>
 
-  <section class="hero-dennis" id="home">
-    <div class="hero-top-info">
-      <div>
-        Located in Indonesia<br>
-        <span style="opacity: 0.7; font-weight: 500;">Brand & Visual Designer</span>
-      </div>
-      <div class="status-badge">
-        <span class="dot-green"></span>
-        Available for freelance
-      </div>
-    </div>
+  <!-- Header / Navigation -->
+  <header>
+    <a href="#" class="logo">© Code by Dennis</a>
+    <nav>
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
 
-    <div class="hero-character-wrapper">
-      <img src="karakter.png" alt="Ruly Damers">
-    </div>
-
+  <!-- Hero Section dengan Marquee Text -->
+  <section class="hero">
     <div class="marquee-container">
-      <div class="marquee-content" id="marquee">
-        <span class="marquee-text">RULY DAMERS <span>—</span> BRAND DESIGNER <span>—</span> </span>
-        <span class="marquee-text">RULY DAMERS <span>—</span> BRAND DESIGNER <span>—</span> </span>
+      <div class="marquee-text">
+        <span class="hero-title">Dennis Snellenberg —</span>
+        <span class="hero-title">Freelance Designer & Developer —</span>
+        <span class="hero-title">Dennis Snellenberg —</span>
+        <span class="hero-title">Freelance Designer & Developer —</span>
       </div>
+    </div>
+    <div class="hero-sub">
+      <p>Helping brands to stand out in the digital era. Together we will set the new status quo.</p>
+      <p>Located in the Netherlands</p>
     </div>
   </section>
 
-  <section class="about" id="about">
-    <div class="about-img-wrapper">
-      <img src="studio.jpg" alt="Ruly Damers Studio" class="about-img">
-    </div>
-    <div>
-      <span class="tag">ABOUT ME</span>
-      <h2 class="about-title">Design with purpose.<br>Brands with <i>soul.</i></h2>
-      <p class="about-text">I'm Ruly Damers, a brand designer helping ambitious businesses stand out with clarity and character. From bold identities to thoughtful details, I design brands that feel true and connect deeply.</p>
-      <div class="signature">Ruly Damers</div>
-    </div>
+  <!-- Work Section -->
+  <section class="works" id="work">
+    <p class="section-title">Recent Work</p>
+    
+    <a href="#" class="work-item" data-hover="View">
+      <h2>TWICE</h2>
+      <span>Interaction & Development</span>
+    </a>
+    <a href="#" class="work-item" data-hover="View">
+      <h2>The Damai</h2>
+      <span>Design & Development</span>
+    </a>
+    <a href="#" class="work-item" data-hover="View">
+      <h2>FABRIC™</h2>
+      <span>Design & Development</span>
+    </a>
+    <a href="#" class="work-item" data-hover="View">
+      <h2>Aanstekelijk</h2>
+      <span>Design & Development</span>
+    </a>
   </section>
 
-  <section class="work" id="projects">
-    <div class="work-header">
-      <div>
-        <span class="tag">FEATURED PROJECTS</span>
-        <h2 style="font-family: 'Instrument Serif', serif; font-size: 3.2rem; font-weight: 400;">Selected work</h2>
-      </div>
-    </div>
-    <div class="work-grid">
-      <div class="work-card">
-        <img src="https://picsum.photos/id/1060/500/350" alt="Verde Coffee">
-        <h4>VERDE COFFEE</h4>
-        <p>Brand Identity, Packaging</p>
-      </div>
-      <div class="work-card">
-        <img src="https://picsum.photos/id/1069/500/350" alt="MVMNT Studio">
-        <h4>MVMNT STUDIO</h4>
-        <p>Brand Identity, Art Direction</p>
-      </div>
-      <div class="work-card">
-        <img src="https://picsum.photos/id/1074/500/350" alt="Solstice Skincare">
-        <h4>SOLSTICE SKINCARE</h4>
-        <p>Brand Identity, Packaging</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="social-section">
-    <div class="social-icons">
-      <a href="#" class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
-      <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
-      <a href="#" class="social-icon dribbble"><i class="fa-brands fa-dribbble"></i></a>
-      <a href="#" class="social-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a href="#" class="social-icon email"><i class="fa-solid fa-envelope"></i></a>
-    </div>
-  </div>
-
+  <!-- Footer Section -->
   <footer id="contact">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <h3 style="font-size: 1.3rem;">RULY DAMERS ✶</h3>
-        <p>Brand designer crafting strategic, impactful identities for forward-thinking brands.</p>
-      </div>
-      <div class="footer-col">
-        <h5>NAVIGATION</h5>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-      </div>
-      <div class="footer-col">
-        <h5>CONTACT</h5>
-        <p>damers.ly@gmail.com</p>
-        <p>KARAWANG, INDONESIA</p>
-      </div>
+    <div class="footer-title">
+      <h1>Let's work<br>together</h1>
+      <a href="mailto:info@example.com" class="btn-magnetic">Get in touch</a>
     </div>
-    <div class="footer-bottom">
-      <div>© 2026 Ruly Damers. All rights reserved.</div>
-      <div>Privacy Policy / Terms & Conditions</div>
+    <div style="display: flex; justify-content: space-between; border-top: 1px solid #333; padding-top: 20px;">
+      <p>© 2026 Edition</p>
+      <p>Local time 02:00 AM GMT+2</p>
     </div>
   </footer>
 
+  <!-- Interaktivitas & Animasi Javascript -->
   <script>
-    const marquee = document.getElementById('marquee');
-    let xPercent = 0;
-    let direction = -1;
-    let speed = 0.08;
-
-    function animateMarquee() {
-      if (xPercent <= -50) {
-        xPercent = 0;
-      } else if (xPercent > 0) {
-        xPercent = -50;
-      }
-      marquee.style.transform = `translateX(${xPercent}%)`;
-      xPercent += speed * direction;
-      requestAnimationFrame(animateMarquee);
-    }
-
-    // Mengubah arah jalan teks berdasarkan arah scroll kursor/mouse
-    window.addEventListener('wheel', (e) => {
-      if (e.deltaY > 0) {
-        direction = -1;
-      } else {
-        direction = 1;
-      }
+    // 1. Smooth Scroll menggunakan Lenis
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
     });
 
-    animateMarquee();
-  </script>
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
+    // 2. Custom Cursor Hover Effect pada Work Items
+    const cursor = document.getElementById('cursor');
+    const workItems = document.querySelectorAll('.work-item');
+
+    document.addEventListener('mousemove', (e) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    });
+
+    workItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        gsap.to(cursor, { scale: 1, duration: 0.3 });
+      });
+      item.addEventListener('mouseleave', () => {
+        gsap.to(cursor, { scale: 0, duration: 0.3 });
+      });
+    });
+
+    // 3. Magnetic Button Effect untuk Tombol CTA
+    const magneticBtn = document.querySelector('.btn-magnetic');
+
+    magneticBtn.addEventListener('mousemove', (e) => {
+      const position = magneticBtn.getBoundingClientRect();
+      const x = e.clientX - position.left - position.width / 2;
+      const y = e.clientY - position.top - position.height / 2;
+
+      gsap.to(magneticBtn, {
+        x: x * 0.4,
+        y: y * 0.4,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+
+    magneticBtn.addEventListener('mouseleave', () => {
+      gsap.to(magneticBtn, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.3)"
+      });
+    });
+  </script>
 </body>
 </html>
