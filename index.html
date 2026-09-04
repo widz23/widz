@@ -129,7 +129,7 @@
       font-size: 16px;
     }
 
-    /* 4. HERO SECTION DENGAN FOTO */
+    /* 4. HERO SECTION DENGAN FOTO ILUSTRASI */
     .hero {
       height: 100vh;
       width: 100%;
@@ -138,7 +138,7 @@
       justify-content: flex-end;
       padding-bottom: 60px;
       position: relative;
-      background-color: #ffffff;
+      background-color: #ffffff; /* Disesuaikan dengan latar putih ilustrasi */
       overflow: hidden;
     }
 
@@ -156,16 +156,10 @@
     }
 
     .hero-image-container img {
-      max-height: 85vh;
+      max-height: 85vh; /* Menyesuaikan proporsi gambar ilustrasi */
       width: auto;
       object-fit: contain;
       object-position: bottom center;
-      filter: grayscale(100%);
-      transition: filter 0.5s ease;
-    }
-
-    .hero-image-container img:hover {
-      filter: grayscale(0%);
     }
 
     /* Badge "Located in..." di sebelah kiri */
@@ -201,7 +195,7 @@
       right: 50px;
       top: 40%;
       z-index: 2;
-      color: #1c1d20;
+      color: #1c1d20; /* Disesuaikan agar terbaca di atas latar putih */
       text-align: right;
     }
 
@@ -238,7 +232,7 @@
       line-height: 0.9;
       white-space: nowrap;
       text-transform: uppercase;
-      color: #1c1d20;
+      color: #1c1d20; /* Warna gelap agar kontras di atas ilustrasi */
     }
 
     @keyframes marquee {
@@ -379,11 +373,12 @@
     </nav>
   </header>
 
-  <!-- HERO SECTION DENGAN FOTO -->
+  <!-- HERO SECTION DENGAN FOTO ILUSTRASI -->
   <section class="hero">
     <!-- FOTO PROFIL UTAMA -->
     <div class="hero-image-container">
-      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Ruly Damers Profile">
+      <!-- Simpan foto ilustrasi tadi satu folder dengan file index.html ini lalu panggil namanya disini -->
+      <img src="foto-pasangan.jpg" alt="Ruly Damers Profile">
     </div>
 
     <!-- ELEMEN BADGE KIRI & KANAN HAS DENNIS -->
